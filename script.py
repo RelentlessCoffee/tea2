@@ -5,8 +5,6 @@
 import requests
 import bs4
 
-tester = "https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup"
-
 
 def scrape(url):
     response = requests.get(url)
@@ -14,6 +12,7 @@ def scrape(url):
     soup = bs4.BeautifulSoup(body, 'html.parser')
     return soup
 
-url = "http://numberoverzero.com/ctf"
+url = "http://www.white2tea.com/tea-shop/2016-fade-raw-puer-huangpian-brick/"
 page = scrape(url)
+
 print(page.title.string)
