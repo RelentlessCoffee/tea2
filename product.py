@@ -27,7 +27,9 @@ def find_name(soup):
     title = soup.find("h1")
     return title.string
 
-url = "http://www.white2tea.com/tea-shop/2015-little-walk/"
-page = load(url)
-print(find_quantities(page))
-print(find_name(page))
+
+if __name__ == "__main__":
+    url = "http://www.white2tea.com/tea-shop/big-leaf-bamboo-sheng-puer/"
+    page = load(url)
+    print(find_quantities(page))
+    print(find_name(page))

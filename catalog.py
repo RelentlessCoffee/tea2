@@ -18,6 +18,7 @@ def find_product_urls(soup):
             product_links.append(link)
     return product_links
 
-url = "http://www.white2tea.com/tea-shop/product-category/raw-puer-tea/white2tea-raw-puer-tea/2015-white-2-tea-puer-teas/"
-page = load(url)
-print(find_product_urls(page))
+
+if __name__ == "__main__":
+    url = "http://www.white2tea.com/tea-shop/product-category/raw-puer-tea/white2tea-raw-puer-tea/2015-white-2-tea-puer-teas/"
+    print(find_product_urls(load(url)))
