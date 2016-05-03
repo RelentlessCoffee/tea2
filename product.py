@@ -3,7 +3,7 @@ import bs4
 import json
 
 
-def load(url):
+def load_single_page(url):
     response = requests.get(url)
     soup = bs4.BeautifulSoup(response.text, 'html.parser')
     return soup
@@ -26,6 +26,6 @@ def find_name(soup):
 
 if __name__ == "__main__":
     url = "http://www.white2tea.com/tea-shop/big-leaf-bamboo-sheng-puer/"
-    page = load(url)
+    page = load_single_page(url)
     print(find_quantities(page))
     print(find_name(page))
