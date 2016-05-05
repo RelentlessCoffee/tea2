@@ -1,5 +1,6 @@
 import requests
 import bs4
+YEAR_URL_PREFIX = "http://www.white2tea.com/tea-shop/product-category"
 
 
 def load_pages(url):
@@ -25,26 +26,19 @@ def find_year_urls(category_url):
         links = category_element.find_all('a')
         links = set([link["href"] for link in links])
         for link in links:
-            if link.startswith("http://www.white2tea.com/tea-shop/product-category"):
+            if link.startswith(YEAR_URL_PREFIX):
                 year_urls.append(link)
     return year_urls
 
 
 def find_product_urls(year_url):
     soups = load_pages(year_url)
-    product_links = []
+    product_urls = []
     for soup in soups:
         product_element = soup.find('ul', class_="products")
         links = product_element.find_all('a')
         links = set([link["href"] for link in links])
         for link in links:
             if link.startswith("http"):
-                product_links.append(link)
-    return product_links
-
-
-if __name__ == "__main__":
-    year_url = "http://www.white2tea.com/tea-shop/product-category/raw-puer-tea/white2tea-raw-puer-tea/2012-white2tea-raw-puer/"
-    category_url = "http://www.white2tea.com/tea-shop/product-category/raw-puer-tea/misc-raw-puer-tea/"
-    print(find_product_urls(year_url))
-    print(len(find_year_urls(category_url)))
+                product_urls.append(link)
+    return product_urls
