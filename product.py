@@ -25,7 +25,7 @@ def find_name(soup):
 
 
 if __name__ == "__main__":
-    url = "http://www.white2tea.com/tea-shop/big-leaf-bamboo-sheng-puer/"
+    url = "http://www.white2tea.com/tea-shop/2015-little-walk/"
     page = load_single_page(url)
     print(find_quantities(page))
     print(find_name(page))

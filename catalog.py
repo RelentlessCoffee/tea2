@@ -17,7 +17,21 @@ def load_pages(url):
     return soups
 
 
-def find_product_urls(soups):
+def find_year_urls(category_url):
+    soups = load_pages(category_url)
+    year_urls = []
+    for soup in soups:
+        category_element = soup.find('ul', class_="products")
+        links = category_element.find_all('a')
+        links = set([link["href"] for link in links])
+        for link in links:
+            if link.startswith("http://www.white2tea.com/tea-shop/product-category"):
+                year_urls.append(link)
+    return year_urls
+
+
+def find_product_urls(year_url):
+    soups = load_pages(year_url)
     product_links = []
     for soup in soups:
         product_element = soup.find('ul', class_="products")
@@ -30,5 +44,7 @@ def find_product_urls(soups):
 
 
 if __name__ == "__main__":
-    url = "http://www.white2tea.com/tea-shop/product-category/raw-puer-tea/white2tea-raw-puer-tea/2015-white-2-tea-puer-teas/"
-    print(find_product_urls(load_pages(url)))
+    year_url = "http://www.white2tea.com/tea-shop/product-category/raw-puer-tea/white2tea-raw-puer-tea/2012-white2tea-raw-puer/"
+    category_url = "http://www.white2tea.com/tea-shop/product-category/raw-puer-tea/misc-raw-puer-tea/"
+    print(find_product_urls(year_url))
+    print(len(find_year_urls(category_url)))
