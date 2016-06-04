@@ -28,10 +28,10 @@ for year_url in year_urls:
     product_urls.extend(find_product_urls(year_url))
 
 for product_url in product_urls:
-    print(product_url)
     try:
         page = load_single_page(product_url)
-        print(find_name(page))
-        print(find_quantities(page))
+        name = find_name(page)
+        quantities = find_quantities(page)
+        print("{} {}".format(name, quantities))
     except NoMaxQuantity as exception:
-        print(exception)
+        print(str(exception).upper())
